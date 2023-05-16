@@ -1,0 +1,52 @@
+
+/*기본 Noto Sans*/
+@font-face {
+    font-family: 'NotoSansCJKkr';
+    font-style: normal;
+    font-weight: 500;
+    src: local(""),
+    url("fonts/notosanscjk/NotoSansCJKkr-Medium.woff2") format("woff2"),
+    url("fonts/notosanscjk/NotoSansCJKkr-Medium.woff") format("woff");
+}
+@font-face {
+    font-family: 'NotoSansCJKkr';
+    font-style: normal;
+    font-weight: normal;
+    src: local(""),
+    url("fonts/notosanscjk/NotoSansCJKkr-Regular.woff2") format("woff2"),
+    url("fonts/notosanscjk/NotoSansCJKkr-Regular.woff") format("woff");
+}
+@font-face {
+    font-family: 'NotoSansCJKkr';
+    font-style: normal;
+    font-weight: 700;
+    src: local(""),
+    url("fonts/notosanscjk/NotoSansCJKkr-Bold.woff2") format("woff2"),
+    url("fonts/notosanscjk/NotoSansCJKkr-Bold.woff") format("woff");
+}
+
+/* KB 폰트 추가 */
+@font-face {
+    font-family: 'KBDisplay';
+    font-style: normal;
+    font-weight: normal;
+    src: local(""),
+    url("fonts/kbfg/KBFGDISPLAYM.woff") format("woff"),
+    url("fonts/kbfg/KBFGDISPLAYM.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'KBDisplay';
+    font-style: normal;
+    font-weight: 300;
+    src: local(""),
+    url("fonts/kbfg/KBFGDISPLAYL.woff") format("woff"),
+    url("fonts/kbfg/KBFGDISPLAYL.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'KBDisplayMI';
+    font-style: normal;
+    font-weight: normal;
+    src: local(""),
+    url("fonts/kbfg/KBFGDISPLAYMI.woff") format("woff"),
+    url("fonts/kbfg/KBFGDISPLAYMI.woff2") format("woff2");
+}
