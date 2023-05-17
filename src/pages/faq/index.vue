@@ -1,11 +1,142 @@
 <template>
-faq
+    <div class="container">
+        <form name="formFAQList" id="formFAQList" method="post">
+            <input name="firstIndex" id="firstIndex" type="hidden"   value="0">
+            <input name="pageIndex"  id="pageIndex"  type="hidden"   value="1">
+            <input name="pageUnit"   id="pageUnit"   type="hidden"   value="10">
+            <input name="inqTpNo"   id="inqTpNo"   type="hidden" >
+            <input name="totalCnts"   id="totalCnts"   type="hidden" value="14">
+            <div class="inner" id="contents">
+                <!-- 상세 : s -->
+                <h2 class="subTopTitle">자주묻는 질문</h2>
+                <div class="tabArea">
+                    <div class="tabList round">
+                        <ul>
+                            <li name="inqTpLi" :class="[{'on' : faqType==='all'}]" @click="clickTab('all')"><a href="#" name="faqTab" class="tab" cmCd="" id="inqTpNoAll"><span>전체 (<span id="all_num">{{listOfAll.length}}</span>) </span><span class="blind">선택됨</span></a></li>
+                            <li name="inqTpLi"  :class="[{'on' : faqType==='user'}]" @click="clickTab('user')"><a href="#" name="faqTab" cmCd="400003" id="400003"  class="tab"><span>회원(<span id="user_num">{{listOfUser.length}}</span>)</span></a></li>
+                            <li name="inqTpLi"  :class="[{'on' : faqType==='app'}]" @click="clickTab('app')"><a href="#" name="faqTab" cmCd="400004" id="400004"  class="tab"><span>앱(<span id="app_num">{{listOfApp.length}}</span>)</span></a></li>
+                            <li name="inqTpLi"  :class="[{'on' : faqType==='service'}]" @click="clickTab('service')"><a href="#" name="faqTab" cmCd="400005" id="400005"  class="tab"><span>서비스가입(<span id="service_num">{{listOfService.length}}</span>)</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="tabContArea">
+                        <div class="tabCont on">
+                            <h4 class="blind">전체 내용</h4>
+                            <ul class="faqList">
+                                <li v-for="(li, i) in listOfAll" :key="i" @click="li.open = !li.open">
+                                    <!--title-->
+                                    <a  :class="['item', {'open' : li.open}]">
+                                        <div class="box q">Q</div>
+                                        <div class="titleArea">
+                                            <span class="kind">{{li.type === 'user' ? '회원' : (li.type === 'app' ? '앱' : '서비스가입')}}</span>
+                                            <span class="title">{{li.title}}</span>
+                                        </div>
+                                    </a>
+                                    <!--title-->
+                                    <!--content-->
+                                    <div class="aContentWrap" :style="{display: `${li.open ? 'block' : 'none'}`}">
+                                        <div class="inner">
+                                            <div class="box a">A</div>
+                                            <div class="aContentArea" v-html="li.content"></div>
+                                        </div>
+                                    </div>
+                                    <!--content-->
+                                </li>
+
+                            </ul>
+
+                            <!--paging-->
+<!--                            <div class="paging">-->
+<!--                                &lt;!&ndash; 변수 매핑 &ndash;&gt;-->
+<!--                                &lt;!&ndash; 이전 버튼 &ndash;&gt;-->
+<!--                                <a href="#" class="pagingPrev off">이전페이지</a>-->
+<!--                                <ul>-->
+<!--                                    <div class="number">-->
+<!--                                        <li class="on">-->
+<!--                                          <a href="#" >1</a>&#160;-->
+<!--                                          <li>-->
+<!--                                            <a href="#" onclick="fnPageChange(2); return false;">2</a>&#160;-->
+<!--                                          </li>-->
+<!--                                        </li>-->
+<!--                                    </div>-->
+<!--                                </ul>-->
+<!--                                &lt;!&ndash; 다음 버튼&ndash;&gt;-->
+<!--                                <a href="#" onclick="fnPageChange(2)" class="pagingNext">다음페이지</a>-->
+<!--                            </div>-->
+                            <!--//paging-->
+                        </div><!--tabCont-->
+                    </div> <!--tabContArea-->
+                </div><!--tabArea-->
+                <!-- 상세 : e -->
+            </div>
+        </form>
+    </div>
 </template>
 
-<script>
-export default {
-    name: "index"
+<script setup lang="ts">
+import {useFetch} from "#app";
+
+let apiUrl: string = 'http://125.131.88.58:8055/items/'
+
+// 자주묻는 질문 tab 클릭 이벤트
+let faqType: string = ref<string>('all')
+async function clickTab(type: string) {
+    faqType.value = type
+    //http://125.131.88.58:8055/items/kb_faq/1?fields=*.*.*
+    let url : string = apiUrl
+    // type === 'all' ? url += type + '/1?fields=*.*.*' : url += type + '?fields=*.*.*'
+    // if(type === 'all'){
+    //     let list: object = await getData('http://125.131.88.58:8055/items/kb_faq?fields=lists.item.*')
+    //     console.log(list)
+    // }
+    // else if(type === 'user'){
+    //     let list: object = await getData('http://125.131.88.58:8055/items/kb_user')
+    //     console.log(list)
+    // }
+    // else if(type === 'app'){
+    //     let list: object = await getData('http://125.131.88.58:8055/items/kb_app')
+    //     console.log(list)
+    // }
+    // else if(type === 'service'){
+    //     let list: object = await getData('http://125.131.88.58:8055/items/kb_service')
+    //     console.log(list)
+    // }
 }
+
+// async function getData(url: string, method: string, body: object){
+//     const { data, pending, error, refresh } = useFetch(
+//         url
+//     )
+//     await refresh() // data 값 할당 전까지 대기
+//     console.log(data)
+//     return data.value.data
+// }
+
+const listOfAll = ref([])
+const listOfUser = ref([])
+const listOfApp = ref([])
+const listOfService = ref([])
+const {data, pending, error, refresh} = await useFetch('http://125.131.88.58:8055/items/kb_faq?fields=lists.item.*')
+console.log(data.value.data[0].lists)
+listOfAll.value = [...data.value.data[0].lists]
+listOfAll.value.forEach(el=>{
+    Object.assign(el, el.item)
+    delete el.item
+    el.open = false
+    if(el.type === 'user'){
+        listOfUser.value.push(el)
+    }
+    else if(el.type === 'app'){
+        listOfApp.value.push(el)
+    }
+    else if(el.type === 'service'){
+        listOfService.value.push(el)
+    }
+
+})
+
+console.log(listOfAll)
+
+
 </script>
 
 <style scoped>
