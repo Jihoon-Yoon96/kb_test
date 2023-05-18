@@ -13,20 +13,20 @@
         </div>
     </section>
 
-    <section class="sec02 reveal">
+    <section class="sec02">
         <div class="inner">
             <p class="ani01 anitop">건강한 몸과 마음을 기반으로 <span class="m-block">나다운 삶을 잘 살 수 있도록</span> <span class="p-block">오케어로 오늘의 건강을 <span class="m-block">케어해 보세요.</span></span></p>
             <p class="logo ani02 anitop">OCARE</p>
             <div class="img-box ani03 anileft">
-                <img src="../v2/img/img-woman-yl.png" alt="section2 달리는 여자 이미지">
+                <img src="@/public/img/img-woman-yl.png" alt="section2 달리는 여자 이미지">
             </div>
             <div class="img-box ani04 anileft">
-                <img src="../v2/img/img-man-bl.png" alt="section2 달리는 남자 이미지">
+                <img src="@/public/img/img-man-bl.png" alt="section2 달리는 남자 이미지">
             </div>
         </div>
     </section>
 
-    <section class="sec03 reveal line">
+    <section class="sec03  line">
         <div class="inner">
             <div class="txt-box">
                 <p class="status ani01 anitop">☺ <span class="highlight">신체적</span> 건강관리 기능</p>
@@ -41,10 +41,10 @@
                 <div class="phone-bg left"></div>
                 <div class="swiper-wrapper">
                     <div class="swiper-slide phone">
-                        <img src="../v2/img/phone-1-1.png">
+                        <img src="@/public/img/phone-1-1.png">
                     </div>
                     <div class="swiper-slide phone">
-                        <img src="../v2/img/phone-1-2.png">
+                        <img src="@/public/img/phone-1-2.png">
                     </div>
                 </div>
                 <div class="phone-bg right"></div>
@@ -55,13 +55,13 @@
             </p>
 
             <div class="img-box ani05 aniopa">
-                <img src="../v2/img/illust-1.png" alt="신체적 건강관리 애니메이션 이미지">
+                <img src="@/public/img/illust-1.png" alt="신체적 건강관리 애니메이션 이미지">
             </div>
 
         </div>
     </section>
 
-    <section class="sec04 reveal line">
+    <section class="sec04  line">
         <div class="inner">
             <div class="txt-box">
                 <p class="status ani01 anitop">♡ <span class="highlight">정신적</span> 건강관리 기능</p>
@@ -73,10 +73,10 @@
                 <div class="phone-bg left"></div>
                 <div class="swiper-wrapper">
                     <div class="swiper-slide phone">
-                        <img src="../v2/img/phone-2-1.png">
+                        <img src="@/public/img/phone-2-1.png">
                     </div>
                     <div class="swiper-slide phone">
-                        <img src="../v2/img/phone-2-2.png">
+                        <img src="@/public/img/phone-2-2.png">
                     </div>
                 </div>
                 <div class="phone-bg right"></div>
@@ -87,12 +87,12 @@
             </p>
 
             <div class="img-box ani05 aniopa">
-                <img src="../v2/img/illust-2.png" alt="정신적 건강관리 애니메이션 이미지">
+                <img src="@/public/img/illust-2.png" alt="정신적 건강관리 애니메이션 이미지">
             </div>
         </div>
     </section>
 
-    <section class="sec05 reveal line">
+    <section class="sec05 line">
         <div class="inner">
             <div class="txt-box">
                 <p class="status ani01 anitop"><span class="ic-user"></span> <span class="highlight">사회적</span> 건강관리 기능</p>
@@ -103,19 +103,19 @@
             <div class="phone-box ani04 anitop">
                 <div class="phone-bg left"></div>
                 <div class="phone">
-                    <img src="../v2/img/phone-3-1.png">
+                    <img src="@/public/img/phone-3-1.png">
                 </div>
                 <div class="phone-bg right"></div>
             </div>
 
             <div class="img-box ani05 aniopa">
-                <img src="../v2/img/illust-3.png" alt="사회적 건강관리 애니메이션 이미지">
-                <img src="../v2/img/illust-heart.png" alt="사회적 건강관리 애니메이션 하트 이미지" class="ani06 heart">
+                <img src="@/public/img/illust-3.png" alt="사회적 건강관리 애니메이션 이미지">
+                <img src="@/public/img/illust-heart.png" alt="사회적 건강관리 애니메이션 하트 이미지" class="ani06 heart">
             </div>
         </div>
     </section>
 
-    <section class="sec06 reveal line center">
+    <section class="sec06 line center">
         <div class="inner">
             <div class="txt-box">
                 <span class="badge ani01 anitop">혜택</span>
@@ -123,7 +123,7 @@
             </div>
 
             <div class="img-box ani03 anitop">
-                <img src="../v2/img/phone-4.png" alt="루틴 이미지">
+                <img src="@/public/img/phone-4.png" alt="루틴 이미지">
                 <div class="bgline"></div>
             </div>
 
@@ -131,7 +131,7 @@
         </div>
     </section>
 
-    <section class="sec07 reveal line center">
+    <section class="sec07 line center">
         <div class="inner">
             <div class="txt-box">
                 <span class="badge ani01 anitop">혜택</span>
@@ -139,7 +139,7 @@
             </div>
 
             <div class="img-box ani03 anitop">
-                <img src="../v2/img/phone-5.png" alt="포인트 혜택 이미지">
+                <img src="@/public/img/phone-5.png" alt="포인트 혜택 이미지">
                 <div class="bgline">
                 </div>
             </div>
@@ -148,7 +148,7 @@
         </div>
     </section>
 
-    <section class="sec08 reveal">
+    <section class="sec08 ">
         <div class="inner">
             <p class="ani01 anitop">원스톱 맞춤형 건강관리</p>
             <p class="ani02 anitop"> 플랫폼 오케어</p>
@@ -157,14 +157,14 @@
             <div class="phone-box ani04 anitop">
                 <div class="phone-bg left"></div>
                 <div class="phone">
-                    <img src="../v2/img/phone-6.png">
+                    <img src="@/public/img/phone-6.png">
                 </div>
                 <div class="phone-bg right"></div>
             </div>
         </div>
     </section>
 
-    <section class="sec09 reveal">
+    <section class="sec09 ">
         <div class="inner">
             <p class="title ani01 anitop"><strong>KB헬스케어</strong>가 생각하는 <strong>헬스케어</strong></p>
             <p class="sub ani02 anitop">누구든 언제나 원하는 바를 실현할 수 있도록 <span class="p-block"><span class="m-block">신체적 정신적 사회적 건강이 균형을 이루는</span> 상태를 지속시켜주는 것.</span></p>
@@ -197,16 +197,16 @@
         <div class="inner">
             <p class="title"><span class="highlight">제휴사</span></p>
             <ul>
-                <li><img src="../v2/img/brandbg-1-sam.png"><span>Samsung</span></li>
-                <li><img src="../v2/img/brandbg-2-our.png"><span>OURHOME</span></li>
-                <li><img src="../v2/img/brandbg-3-kds.png"><span>kdsports</span></li>
-                <li><img src="../v2/img/brandbg-4-sou.png"><span>SOUNDGYM</span></li>
-                <li><img src="../v2/img/brandbg-5-hun.png"><span>HUNO</span></li>
-                <li><img src="../v2/img/brandbg-6-the.png"><span>THERAGEN BIO</span></li>
-                <li><img src="../v2/img/brandbg-7-hur.png"><span>Huraypositive</span></li>
-                <li><img src="../v2/img/brandbg-8-car.png"><span>Caredoc</span></li>
-                <li><img src="../v2/img/brandbg-9-bec.png"><span>BECON</span></li>
-                <li><img src="../v2/img/brandbg-10-wel.png"><span>Wellxecon</span></li>
+                <li><img src="@/public/img/brandbg-1-sam.png"><span>Samsung</span></li>
+                <li><img src="@/public/img/brandbg-2-our.png"><span>OURHOME</span></li>
+                <li><img src="@/public/img/brandbg-3-kds.png"><span>kdsports</span></li>
+                <li><img src="@/public/img/brandbg-4-sou.png"><span>SOUNDGYM</span></li>
+                <li><img src="@/public/img/brandbg-5-hun.png"><span>HUNO</span></li>
+                <li><img src="@/public/img/brandbg-6-the.png"><span>THERAGEN BIO</span></li>
+                <li><img src="@/public/img/brandbg-7-hur.png"><span>Huraypositive</span></li>
+                <li><img src="@/public/img/brandbg-8-car.png"><span>Caredoc</span></li>
+                <li><img src="@/public/img/brandbg-9-bec.png"><span>BECON</span></li>
+                <li><img src="@/public/img/brandbg-10-wel.png"><span>Wellxecon</span></li>
             </ul>
         </div>
     </section>
