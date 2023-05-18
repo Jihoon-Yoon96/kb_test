@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="btnBottomArea tac">
-                    <nuxt-link to="recruit/create" class="btnText recruit"><span>채용공고 등록 하기</span></nuxt-link>
+                    <nuxt-link to="recruit/createRecruit" class="btnText recruit"><span>채용공고 등록 하기</span></nuxt-link>
                 </div>
                 <!--paging-->
 <!--                <div class="paging">-->

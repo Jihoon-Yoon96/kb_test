@@ -93,9 +93,9 @@ const listOfService = ref([])
 
 // 질문가져오기
 async function getFAQ(){
-    const {data, pending, error, refresh} = await useFetch('http://125.131.88.58:8055/items/kb_faq?fields=lists.item.*')
-    console.log(data.value.data[0].lists)
-    listOfAll.value = [...data.value.data[0].lists]
+    const {data, pending, error, refresh} = await useFetch('http://125.131.88.58:8055/items/kb_faq/1?fields=lists.item.*')
+    console.log(data.value.data.lists)
+    listOfAll.value = [...data.value.data.lists]
     listOfAll.value.forEach(el=>{
         // response 포맷 통일
         Object.assign(el, el.item)

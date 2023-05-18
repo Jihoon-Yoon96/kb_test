@@ -19,25 +19,27 @@
                         </ul>
                     </div>
                     <div class="tabContArea">
-                        <div class="tabCont on">
+                        <div class="tabCont on" >
                             <h4 class="blind">전체 내용</h4>
                             <div class="thumbnail_ist">
                                 <ul>
-                                    <li id="">
-                                        <a href="javascript:selectDetail('35')" class="item">
+                                    <li id="" v-for="(li, i) in noticeLists" :key="i">
+                                        <nuxt-link :to="{path:`/notice/${li.id}`, query:{id : li.id}}" class="item">
                                             <div class="img">
-                                                <img src="../asset/images/noImg.png" alt="" width="180px">
+                                                <img :src=li.img alt="" width="180px" v-if="li.thumb">
+                                                <img src="@/public/img/noImg.png" alt="" width="180px" v-else>
                                             </div>
                                             <div class="textArea">
                                                 <div class="flagArea">
-                                                    <div class="flag red">공지사항</div>
+                                                    <div class="flag red">{{li.type === 'notice' ? '공지사항' : (li.type === 'news' ? '언론보도' : '이벤트')}}</div>
                                                 </div>
-                                                <div class="title">[일정변경] KB헬스케어_디지털 헬스케어 B2C,B2B 통합 플랫폼 구축 사업 공고</div>
+                                                <div class="title">{{li.title}}</div>
                                                 <div id="date" class="date">
-                                                    2023-03-27 14:47
+                                                    {{li.writer.name}} <br>
+                                                    {{dateFormat(li.date_created)}}
                                                 </div>
                                             </div>
-                                        </a>
+                                        </nuxt-link>
                                     </li>
                                 </ul>
                             </div>
@@ -75,11 +77,35 @@
 <script setup lang="ts">
 
 let noticeType: string = ref<string>('all')
-
 function clickTab(type: string) {
     noticeType.value = type
 
 
+}
+
+let noticeLists = ref([])
+
+const {data, pending, error, refresh} = await useFetch('http://125.131.88.58:8055/items/kb_notice_list?fields=*.*')
+console.log(data)
+if(data.value){
+    noticeLists.value = data.value.data
+    noticeLists.value.forEach(el=>{
+        if(el.thumb){
+            el.img = `http://125.131.88.58:8055/assets/${el.thumb.id}`
+        }
+    })
+}
+else{
+    console.log(error)
+}
+
+
+// 날짜 포맷 변경
+function dateFormat(date: string){
+    let day = new Date(date)
+    let formed = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()} ${day.getHours()}:${day.getMinutes()}`
+    console.log('date',day.getMonth())
+    return formed
 }
 
 </script>

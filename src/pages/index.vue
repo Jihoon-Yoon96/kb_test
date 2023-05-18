@@ -2,19 +2,12 @@
     <section class="sec01 reveal indexmain active animation" v-html="top"></section>
 
     <section class="sec02" v-html="section1"></section>
-
     <section class="sec03  line" v-html="section2"></section>
-
     <section class="sec04  line" v-html="section3"></section>
-
     <section class="sec05 line" v-html="section4"></section>
-
     <section class="sec06 line center" v-html="section5"></section>
-
     <section class="sec07 line center" v-html="section6"></section>
-
     <section class="sec08 " v-html="section7"></section>
-
     <section class="sec09 " v-html="section8"></section>
 
     <section class="affiliate" v-html="partners"></section>
