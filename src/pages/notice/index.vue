@@ -24,7 +24,7 @@
                             <div class="thumbnail_ist">
                                 <ul>
                                     <li id="" v-for="(li, i) in noticeLists" :key="i">
-                                        <nuxt-link :to="{path:`/notice/${li.id}`, query:{id : li.id}}" class="item">
+                                        <nuxt-link :to="{path:`/notice/${li.id}`}" class="item">
                                             <div class="img">
                                                 <img :src=li.img alt="" width="180px" v-if="li.thumb">
                                                 <img src="@/public/img/noImg.png" alt="" width="180px" v-else>
@@ -35,7 +35,7 @@
                                                 </div>
                                                 <div class="title">{{li.title}}</div>
                                                 <div id="date" class="date">
-                                                    {{li.writer.name}} <br>
+                                                    {{li.writer?.name}} <br>
                                                     {{dateFormat(li.date_created)}}
                                                 </div>
                                             </div>
@@ -45,30 +45,21 @@
                             </div>
 
                             <!--paging-->
-<!--                            <div class="paging">-->
-<!--                                &lt;!&ndash; 변수 매핑 &ndash;&gt;-->
-<!--                                -->
-<!--                                &lt;!&ndash; 이전 버튼 &ndash;&gt;-->
-<!--                                <a href="#" class="pagingPrev off">이전페이지</a>-->
-<!--                                -->
-<!--                                <ul>-->
-<!--                                    <div class="number">-->
-<!--                                      <li class="on">-->
-<!--                                          <a href="#" >1</a>&#160;-->
-<!--                                          <li>-->
-<!--                                          <a href="#" onclick="fnPageChange(2); return false;">2</a>&#160;-->
-<!--                                          </li>-->
-<!--                                        </li>-->
-<!--                                    </div>-->
-<!--                                </ul>-->
-<!--                                &lt;!&ndash; 다음 버튼&ndash;&gt;-->
-<!--                                <a href="#" onclick="fnPageChange(2)" class="pagingNext">다음페이지</a>-->
-<!--                            </div>-->
+                            <div class="paging">
+                                <ul>
+                                    <div class="number">
+                                      <li :class="[{'on' : page === index}]" v-for="index in maxPage"><a href="#" @click="getLists(index)">{{ index }}</a>&#160;</li>
+                                    </div>
+                                </ul>
+                            </div>
 
                         </div>
                     </div>
                 </div>
                 <!-- 상세 : e -->
+                <div class="btnBottomArea tac">
+                    <nuxt-link to="notice/createNotice" class="btnText recruit"><span>등록 하기</span></nuxt-link>
+                </div>
             </div>
         </form>
     </div>
@@ -79,24 +70,34 @@
 let noticeType: string = ref<string>('all')
 function clickTab(type: string) {
     noticeType.value = type
-
-
 }
 
 let noticeLists = ref([])
+const limit: number = 9 // 페이지 당 컨텐츠 갯수
+let page: number = 1 // 현재 페이지 넘버
+let total: number = 0 // 총 컨텐츠 갯수
+let maxPage: number = 0 // 최대 페이지
 
-const {data, pending, error, refresh} = await useFetch('http://125.131.88.58:8055/items/kb_notice_list?fields=*.*')
-console.log(data)
-if(data.value){
-    noticeLists.value = data.value.data
-    noticeLists.value.forEach(el=>{
-        if(el.thumb){
-            el.img = `http://125.131.88.58:8055/assets/${el.thumb.id}`
-        }
-    })
-}
-else{
-    console.log(error)
+async function getLists(num: number){
+    page = num
+    const {data, pending, error, refresh} = await useFetch(`http://125.131.88.58:8055/items/kb_notice_list?fields=*.*&meta=*&limit=${limit}&page=${page}`)
+    console.log(data)
+    if(data.value){
+        // 데이터 주입
+        noticeLists.value = data.value.data
+        noticeLists.value.forEach(el=>{
+            if(el.thumb){
+                el.img = `http://125.131.88.58:8055/assets/${el.thumb.id}`
+            }
+        })
+
+        // 페이징 처리
+        total = data.value.meta.total_count
+        maxPage = total > 9 ? Math.ceil(total/limit) : 1
+    }
+    else{
+        console.log(error)
+    }
 }
 
 
@@ -107,6 +108,8 @@ function dateFormat(date: string){
     console.log('date',day.getMonth())
     return formed
 }
+
+getLists(1)
 
 </script>
 

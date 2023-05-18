@@ -22,6 +22,10 @@
                 <nuxt-link to="/notice" class="btnText yellow"><span>목록</span></nuxt-link>
             </div>
             <!-- 상세 : e -->
+            <div class="btnTopArea">
+                <nuxt-link :to="{path:'/notice/updateNotice',query:{id:id}}" class="btnText recruit" style="margin-right: 10px;"><span>수정</span></nuxt-link>
+                <a href="" @click="deleteRecruit()" class="btnText recruit"><span>삭제</span></a>
+            </div>
         </div>
     </div>
 </template>
@@ -44,7 +48,7 @@ if(data.value){
     title = data.value.data.title
     content = data.value.data.content
     date = dateFormat(data.value.data.date_created)
-    writer = data.value.data.writer.name
+    writer = data.value.data.writer?.name
 
 }
 else{

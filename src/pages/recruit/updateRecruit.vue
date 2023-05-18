@@ -4,7 +4,7 @@
             <input type="hidden" name="isNewFile" value="">
             <div class="inner" id="contents">
                 <!-- 상세 : s -->
-                <h2 class="subTopTitle">채용공고 등록</h2>
+                <h2 class="subTopTitle">채용공고 수정</h2>
 
                 <div class="recruitWrite">
                     <div class="formWrap">
@@ -72,7 +72,7 @@
 
 
                 <div class="btnBottomArea tac">
-                    <p href="javascript:save()" id="save" class="btnText recruit" @click="createRecruit()"><span>채용공고 등록 하기</span></p>
+                    <p href="javascript:save()" id="save" class="btnText recruit" @click="updateRecruit()"><span>채용공고 등록 하기</span></p>
                 </div>
 
 
@@ -108,7 +108,7 @@ else{
 }
 
 // 수정하기
-async function createRecruit(){
+async function updateRecruit(){
     const url: string = `http://125.131.88.58:8055/items/kb_announce/${id}`
     const method: string = 'PATCH'
     const body: object = {
