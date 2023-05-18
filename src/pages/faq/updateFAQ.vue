@@ -86,7 +86,6 @@ async function updateFAQ(){
         "title": title.value,
         "content": content.value
     }
-    debugger
 
     const {data, pending, error, refresh} = await useFetch(
         url,{

@@ -35,13 +35,17 @@
                         <li class="date">채용일정</li>
                     </ul>
                     <ul class="bodyArea">
-                        <li>
-                            <a href="javascript:selectRecruitDetail('18')">
-                                <span class="title">KB헬스케어는 이런 분을 찾습니다.</span>
-                                <span class="date">2022-01-01 ~ 2022-12-31</span>
-                            </a>
+                        <li v-for="(li, i) in list" :key="i">
+                            <nuxt-link :to="{path:`/recruit/${li.id}`}">
+                                <span class="title">{{li.title}}</span>
+                                <span class="date">{{ li.recruit_start }} ~ {{ li.recruit_end }}</span>
+                            </nuxt-link>
                         </li>
                     </ul>
+                </div>
+
+                <div class="btnBottomArea tac">
+                    <nuxt-link to="recruit/create" class="btnText recruit"><span>채용공고 등록 하기</span></nuxt-link>
                 </div>
                 <!--paging-->
 <!--                <div class="paging">-->
@@ -63,9 +67,14 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "index"
+<script setup lang="ts">
+const list = ref([])
+
+// 체용공고 리스트 가져오기
+const {data, pending, error, refresh} = await useFetch(`http://125.131.88.58:8055/items/kb_announce`)
+console.log(data)
+if(data.value){
+    list.value = data.value.data
 }
 </script>
 

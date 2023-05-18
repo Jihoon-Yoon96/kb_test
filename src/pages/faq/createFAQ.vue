@@ -77,7 +77,6 @@ async function createFAQ(){
         "type": type.value,
         "content": content.value
     }
-    debugger
 
     const {data, pending, error, refresh} = await useFetch(
         url,{
