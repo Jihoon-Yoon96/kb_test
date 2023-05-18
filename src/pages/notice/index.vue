@@ -12,10 +12,10 @@
                 <div class="tabArea">
                     <div class="tabList round">
                         <ul>
-                            <li name="ntcFgLi" :class="[{'on' : noticeType==='all'}]" @click="clickTab('all')"><a href="#" name="ntcFgTab" class="tab" cmCd="" id="ntcFgAll"><span>전체</span></a></li>
-                            <li name="ntcFgLi" :class="[{'on' : noticeType==='notice'}]" @click="clickTab('notice')"><a href="#" name="ntcFgTab" class="tab" cmCd="300117" id="300117"><span>공지사항</span></a></li>
-                            <li name="ntcFgLi" :class="[{'on' : noticeType==='news'}]" @click="clickTab('news')"><a href="#" name="ntcFgTab" class="tab" cmCd="300118" id="300118"><span>언론보도</span></a></li>
-                            <li name="ntcFgLi" :class="[{'on' : noticeType==='event'}]" @click="clickTab('event')"><a href="#" name="ntcFgTab" class="tab" cmCd="300119" id="300119"><span>이벤트</span></a></li>
+                            <li name="ntcFgLi" class="on" @click="clickTab('all')"><a href="#" name="ntcFgTab" class="tab" cmCd="" id="ntcFgAll"><span>전체</span></a></li>
+                            <li name="ntcFgLi" @click="clickTab('notice')"><a href="#" name="ntcFgTab" class="tab" cmCd="300117" id="300117"><span>공지사항</span></a></li>
+                            <li name="ntcFgLi" @click="clickTab('news')"><a href="#" name="ntcFgTab" class="tab" cmCd="300118" id="300118"><span>언론보도</span></a></li>
+                            <li name="ntcFgLi" @click="clickTab('event')"><a href="#" name="ntcFgTab" class="tab" cmCd="300119" id="300119"><span>이벤트</span></a></li>
                         </ul>
                     </div>
                     <div class="tabContArea">
@@ -67,25 +67,23 @@
 
 <script setup lang="ts">
 
-let noticeType: string = ref<string>('all')
-function clickTab(type: string) {
-    noticeType.value = type
-}
+const noticeLists = ref([])
 
-let noticeLists = ref([])
 const limit: number = 9 // 페이지 당 컨텐츠 갯수
 let page: number = 1 // 현재 페이지 넘버
 let total: number = 0 // 총 컨텐츠 갯수
 let maxPage: number = 0 // 최대 페이지
 
+
 async function getLists(num: number){
     page = num
-    const {data, pending, error, refresh} = await useFetch(`http://125.131.88.58:8055/items/kb_notice_list?fields=*.*&meta=*&limit=${limit}&page=${page}`)
+    const {data, pending, error, refresh} = await useFetch(`http://125.131.88.58:8055/items/kb_notice_list?fields=*.*&meta=*&sort=-id&limit=${limit}&page=${page}`)
     console.log(data)
     if(data.value){
         // 데이터 주입
         noticeLists.value = data.value.data
         noticeLists.value.forEach(el=>{
+            // 이미지에 도메인 주입
             if(el.thumb){
                 el.img = `http://125.131.88.58:8055/assets/${el.thumb.id}`
             }
@@ -100,6 +98,11 @@ async function getLists(num: number){
     }
 }
 
+// tab 클릭 이벤트
+let noticeType: string = ref<string>('all')
+function clickTab(type: string) {
+    noticeType.value = type
+}
 
 // 날짜 포맷 변경
 function dateFormat(date: string){
