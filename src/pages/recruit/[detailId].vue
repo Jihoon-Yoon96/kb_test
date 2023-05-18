@@ -6,7 +6,8 @@
                 <h2 class="subTopTitle pcOnly">채용</h2>
                 <div class="recruitView">
                     <div class="btnTopArea">
-                        <a href="javascript:selectRecruitWrite()" class="btnText recruit"><span>입사지원</span></a>
+                        <nuxt-link :to="{path:'/recruit/updateRecruit',query:{id:id}}" class="btnText recruit" style="margin-right: 10px;"><span>공고 수정</span></nuxt-link>
+                        <a href="" @click="deleteRecruit()" class="btnText recruit"><span>공고 삭제</span></a>
                     </div>
                     <!--본문-->
                     <ul class="headerArea">
@@ -27,6 +28,7 @@
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
+import {useFetch} from "#app";
 
 const router = useRouter()
 const id = router.currentRoute.value.params.detailId // 체용공고 상세 ID
@@ -44,6 +46,32 @@ if(data.value){
     content = data.value.data.content
     recruit_start = data.value.data.recruit_start
     recruit_end = data.value.data.recruit_end
+}
+
+// 삭제
+async function deleteRecruit(){
+    let result = confirm('삭제하시겠습니까?')
+
+    if(result){
+        const {data, pending, error, refresh} = await useFetch(`http://125.131.88.58:8055/items/kb_announce/${id}`,{
+            method: 'DELETE'
+        })
+        console.log(`data`, data)
+        console.log(`error`, error)
+        if(data.value === ''){
+            alert('채용공고 삭제 성공!')
+            // router.push('/recruit')
+        }
+        else{
+            alert('채용공고 삭제 실패')
+            console.log(error)
+        }
+    }
+}
+
+// 수정 페이지 이동
+function updateRecruit(){
+    router.push({path:'/recruit/updateRecruit', query:{id:id}})
 }
 
 </script>
