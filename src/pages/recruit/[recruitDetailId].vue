@@ -31,7 +31,7 @@ import {useRouter} from "vue-router";
 import {useFetch} from "#app";
 
 const router = useRouter()
-const id = router.currentRoute.value.params.detailId // 체용공고 상세 ID
+const id = router.currentRoute.value.params.recruitDetailId // 체용공고 상세 ID
 
 let title: string = ''
 let content: string = ''
